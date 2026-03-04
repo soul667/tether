@@ -46,6 +46,7 @@ The following instructions will install everything three conda environments: one
 2. Collect the initial set of demonstrations for your target tasks. Place your demonstrations under `data_real/demos`.
 
 We expect the following structure for demonstrations:
+```
 {demo_dir}/
   ├── trajectory.npz          # Has "state" representing the robot's Cartesian End Effector Pose
   ├── calibration.json        # Camera calibration; keyed by "{camera_id}_left"
@@ -62,7 +63,7 @@ We expect the following structure for demonstrations:
           ...
       └── {camera_name}.mp4   # One video per camera in cfg.setting.cameras
       ...
-
+```
 3. Edit the demo_names list in the `conf/setting/real.yaml` configuration to match your demonstration set. The format of this list is: `<name of the subdirectory in demo folder>`: `<desired natural instruction for Gemini action planning and success evaluation>`
 
 4. In `conf/setting/real.yaml`, modify the camera parameters to be the ZED camera serial numbers in your setup. You can find the serial numbers for your cameras using [these instructions](https://support.stereolabs.com/hc/en-us/articles/19540095753111-How-can-I-get-the-serial-number-of-my-camera).
@@ -73,7 +74,7 @@ We expect the following structure for demonstrations:
 
 # Running the Policy
 
-1. In the respective conda environments from the last section, start the servers for GeoAware and Mast3r by running `serve_geoaware.py` and `server_mast3r.py`. Wait for the servers to both print Serving ... before proceeding.
+1. In the respective conda environments from the last section, start the servers for GeoAware and Mast3r by running `serve_geoaware.py` and `serve_mast3r.py`. Wait for the servers to both print Serving ... before proceeding.
 
 2. Start the Eva server and runner [here](https://github.com/willjhliang/eva?tab=readme-ov-file#startup), or prepare your own robot infra.
 
