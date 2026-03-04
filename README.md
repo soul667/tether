@@ -1,14 +1,18 @@
-# Tether: Autonomous Play with Correspondence-Driven Trajectory Warping
+![Frame 122](https://github.com/user-attachments/assets/5ff719c1-2be4-490b-b298-1539136bacbc)
+
+# Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping
 
 <div align="center">
 
-[[Website]]
-[[arXiv]]
+<div align="center">
+  <p style>
+    <a href="https://tether-research.github.io"><strong>🌐 Website</strong></a> | 
+    <a href="https://arxiv.org/abs/2603.03278"><strong>📄 Paper</strong></a>
+  </p>
+</div>
 
 [William Liang](https://willjhliang.github.io), [Sam Wang](https://samuelwang23.github.io/), [Hung-Ju Wang](https://www.linkedin.com/in/hungju-wang),<br>
 [Osbert Bastani](https://obastani.github.io/), [Yecheng Jason Ma<sup>†</sup>](https://jasonma2016.github.io/), [Dinesh Jayaraman<sup>†</sup>](https://www.seas.upenn.edu/~dineshj/)
-
-University of Pennsylvania
 
 [![Python Version](https://img.shields.io/badge/Python-3.10-blue.svg)](https://github.com/tether-research/tether)
 [<img src="https://img.shields.io/badge/Framework-PyTorch-red.svg"/>](https://pytorch.org/)
@@ -18,7 +22,7 @@ ______________________________________________________________________
 
 </div>
 
-The ability to conduct and learn from self-directed interaction and experience is a central challenge in robotics, offering a scalable alternative to labor-intensive human demonstrations. However, realizing such "play" requires (1) a policy robust to diverse, potentially out-of-distribution environment states, and (2) a procedure that continuously produces useful, task-directed robot experience. To address these challenges, we introduce Tether, a method for autonomous play with two key contributions. First, we design a novel non-parametric policy that leverages strong visual priors for extreme generalization: given two-view images, it identifies semantic correspondences to warp demonstration trajectories into new scenes. We show that this design is robust to significant spatial and semantic variations of the environment, such as dramatic positional differences and unseen objects. We then deploy this policy for autonomous multi-task play in the real world via a continuous cycle of task selection, execution, evaluation, and improvement, guided by the visual understanding capabilities of vision-language models. This procedure generates diverse, high-quality datasets with minimal human intervention. In a household-like multi-object setup, our method is among the first to perform many hours of autonomous real-world play, producing a stream of data that consistently improves downstream policy performance over time. Ultimately, Tether yields over 1000 expert-level trajectories and trains policies competitive with those learned from human-collected demonstrations.
+The ability to conduct and learn from interaction and experience is a central challenge in robotics, offering a scalable alternative to labor-intensive human demonstrations. However, realizing such "play" requires (1) a policy robust to diverse, potentially out-of-distribution environment states, and (2) a procedure that continuously produces useful robot experience. To address these challenges, we introduce Tether, a method for autonomous functional play involving structured, task-directed interactions. First, we design a novel open-loop policy that warps actions from a small set of source demonstrations (<=10) by anchoring them to semantic keypoint correspondences in the target scene. We show that this design is extremely data-efficient and robust even under significant spatial and semantic variations. Second, we deploy this policy for autonomous functional play in the real world via a continuous cycle of task selection, execution, evaluation, and improvement, guided by the visual understanding capabilities of vision-language models. This procedure generates diverse, high-quality datasets with minimal human intervention. In a household-like multi-object setup, our method is the first to perform many hours of autonomous multi-task play in the real world starting from only a handful of demonstrations. This produces a stream of data that consistently improves the performance of closed-loop imitation policies over time, ultimately yielding over 1000 expert-level trajectories and training policies competitive with those learned from human-collected demonstrations.
 
 # Installation
 The following instructions will install everything three conda environments: one main environment for the tether code, and two conda environments for running GeoAware and Mast3r. We have tested on Ubuntu 20.04.
@@ -62,17 +66,20 @@ The following instructions will install everything three conda environments: one
 ## Acknowledgements
 We thank the following open-sourced projects:
 * We compute correspondences using [GeoAware-SC](https://github.com/Junyi42/GeoAware-SC) and [MASt3R](https://github.com/naver/mast3r).
-* Our deployment infrastructure,[Eva](https://github.com/willjhliang/eva), builds on [DROID](https://droid-dataset.github.io/droid/docs/software-setup)'s software setup.
+* Our deployment infrastructure, [Eva](https://github.com/willjhliang/eva), builds on [DROID](https://droid-dataset.github.io/droid/docs/software-setup)'s software setup.
 
 # License
 This codebase is released under [MIT License](LICENSE).
 
 ## Citation
-If you find our work useful, please consider citing us!
 ```bibtex
-@misc{liang2025tether,
-    title={Tether: Autonomous Play with Correspondence-Driven Trajectory Warping},
-    author  = {William Liang and Sam Wang and Hungju Wang and Osbert Bastani and Jason Ma and Dinesh Jayaraman}
-    year={2025},
+@misc{liang2026tether,
+      title={Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping}, 
+      author={William Liang and Sam Wang and Hung-Ju Wang and Osbert Bastani and Yecheng Jason Ma and Dinesh Jayaraman},
+      year={2026},
+      eprint={2603.03278},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2603.03278}, 
 }
 ```
