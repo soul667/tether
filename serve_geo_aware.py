@@ -21,7 +21,7 @@ timer = Timer()
 num_patches, image_size = 60, 480
 primary_gpu, secondary_gpu = "cuda:0", "cuda:1"
 aggre_net = AggregationNetwork(feature_dims=[640,1280,1280,768], projection_dim=768, device=primary_gpu)
-aggre_net.load_pretrained_weights(torch.load('/home/exx/Projects/GeoAware-SC/results_spair/best_856.PTH'))
+aggre_net.load_pretrained_weights(torch.load('<path_to_GeoAware-SC>/results_spair/best_856.PTH'))
 sd_model, sd_aug = load_model(diffusion_ver='v1-5', image_size=num_patches*16, num_timesteps=50, block_indices=[2,5,8,11])
 extractor_vit = ViTExtractor('dinov2_vitb14', stride=14, device=primary_gpu)
 
