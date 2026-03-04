@@ -34,7 +34,7 @@ The following instructions will install everything three conda environments: one
     pip install -r requirements.txt
     ```
 
-2. Set up the GeoAware conda environment with the instructions [here](https://github.com/Junyi42/GeoAware-SC?tab=readme-ov-file#environment-setup).
+2. Set up the GeoAware conda environment with the instructions [here](https://github.com/Junyi42/GeoAware-SC?tab=readme-ov-file#environment-setup). Change the `<path_to_GeoAware-SC>` [here](https://github.com/tether-research/tether/blob/d29ecd02ceac7ae6635959007471206a8bbb8e77/serve_geo_aware.py#L24) to the location you clone the GeoAware-SC repository.
 
 3. Set up the MASt3R conda environment with the instructions [here](https://github.com/naver/mast3r).
 
@@ -44,6 +44,24 @@ The following instructions will install everything three conda environments: one
 1. Set your Gemini API key in `conf/config.yaml` under the `api_key_smart` and `api_key_fast` fields.
 
 2. Collect the initial set of demonstrations for your target tasks. Place your demonstrations under `data_real/demos`.
+
+We expect the following structure for demonstrations:
+{demo_dir}/
+  ├── trajectory.npz          # Has "state" representing the robot's Cartesian End Effector Pose
+  ├── calibration.json        # Camera calibration; keyed by "{camera_id}_left"
+  │                           # each entry has "extrinsics" (euler angles) and "intrinsics"
+  └── recordings/
+      └── {camera_name}.mp4   # One video per camera in cfg.setting.cameras
+  └── recordings/
+      └── frames/             # One folder of frames per camera in cfg.setting.cameras
+          └── {camera_name}/
+              └── 00000.jpg
+              └── 00001.jpg
+              ...
+          └── {camera_name2}/
+          ...
+      └── {camera_name}.mp4   # One video per camera in cfg.setting.cameras
+      ...
 
 3. Edit the demo_names list in the `conf/setting/real.yaml` configuration to match your demonstration set. The format of this list is: `<name of the subdirectory in demo folder>`: `<desired natural instruction for Gemini action planning and success evaluation>`
 
