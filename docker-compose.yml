@@ -16,7 +16,7 @@ services:
       - PYTHONUNBUFFERED=1
     # Network host mode enables access to external RPC servers and robot
     network_mode: host
-    command: ["python", "runner.py", "--help"]
+    command: ["python", "-c", "print('Tether container ready. Use tether-single or tether-cycle profiles to run.')"]
 
   # Single rollout mode
   tether-single:

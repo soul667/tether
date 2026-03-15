@@ -31,5 +31,5 @@ COPY *.py ./
 # Create directories for runtime data
 RUN mkdir -p data_real/demos data_real/runs cache
 
-# Default command shows usage help
-CMD ["python", "runner.py", "--help"]
+# Default command shows usage information
+CMD ["python", "-c", "print('Tether: Autonomous Functional Play with Correspondence-Driven Trajectory Warping\\n\\nUsage:\\n  Single rollout:  python runner.py mode=single action=<action_name>\\n  Autonomous play: python runner.py mode=cycle\\n\\nNote: Requires GeoAware (port 50011) and MASt3R (port 50022) servers running on host.')"]
