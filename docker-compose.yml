@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  # Main Tether service for running trajectory warping
+  tether:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tether:latest
+    container_name: tether
+    volumes:
+      - ./data_real:/app/data_real          # Demo and run data
+      - ./cache:/app/cache                  # Feature cache
+      - ./conf:/app/conf                    # Configuration (mount to override)
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Network host mode enables access to external RPC servers and robot
+    network_mode: host
+    command: ["python", "-c", "print('Tether container ready. Use tether-single or tether-cycle profiles to run.')"]
+
+  # Single rollout mode
+  tether-single:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tether:latest
+    container_name: tether-single
+    volumes:
+      - ./data_real:/app/data_real
+      - ./cache:/app/cache
+      - ./conf:/app/conf
+    environment:
+      - PYTHONUNBUFFERED=1
+    network_mode: host
+    # Override ACTION env var when running: docker compose run -e ACTION=bowl-table-shelf tether-single
+    command: >
+      python runner.py mode=single action=${ACTION:-bowl-table-shelf}
+    profiles:
+      - single
+
+  # Autonomous play cycle mode
+  tether-cycle:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tether:latest
+    container_name: tether-cycle
+    volumes:
+      - ./data_real:/app/data_real
+      - ./cache:/app/cache
+      - ./conf:/app/conf
+    environment:
+      - PYTHONUNBUFFERED=1
+    network_mode: host
+    command: ["python", "runner.py", "mode=cycle"]
+    profiles:
+      - cycle
