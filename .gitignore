@@ -176,7 +176,6 @@ wandb/
 *.npz
 *.jpg
 *.png
-*.md
 *.mp4
 *.json
 *.svo2
